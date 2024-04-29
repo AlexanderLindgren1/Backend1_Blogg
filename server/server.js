@@ -20,7 +20,7 @@ app.post("/users", async(req, res) => {
 
     try {
         const salt = await bcrypt.genSalt()
-        const hashPassword = await bcrypt.hash(req.body.password, 10)
+        const hashPassword = await bcrypt.hash(req.body.password, salt)
 
 
 
