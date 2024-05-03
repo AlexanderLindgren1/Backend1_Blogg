@@ -1,1 +1,5 @@
-console.log(1);
+console.log(
+
+require('crypto').randomBytes(32).toString('hex')
+
+);

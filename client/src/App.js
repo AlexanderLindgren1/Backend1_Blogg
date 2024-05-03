@@ -1,27 +1,40 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/HomePage";
+import Header from "./pages/components/Header";
+import Login from "./pages/LoginPage";
+import SignUp from "./pages/SignUpPage";
+import Private from "./pages/PrivatePage";
+import authService from "./services/auth.service";
 
 function App() {
 
-  const [backenddata, setBackenddata] = useState([])
+  const [currentUser, setCurrentUser] = useState(undefined)
   useEffect(() => {
+    const user = authService.getCurrentUser()
 
-    fetch("/posts").then(
-      response => response.json(
-
-      ).then(
-        data => {
-    
-          setBackenddata(data)
-        }
-      )
-    )
+    if(user){
+      setCurrentUser(user)
+    }
   }, [])
+  const logOut =()=>{
+    authService.logout()
+  }
 
   return (
-    <div>
-      {(typeof backenddata === "undefined") ? (<p>Loading</p>) : backenddata.map((user,index)=> (<p key={index}>{user.username}</p>) )}
+    <>
+      <Header logOut= {logOut} currentUser ={currentUser} />
 
-    </div>
+      <Routes>
+        <Route path="/" element={<Home  />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signUp" element={<SignUp />} />
+        <Route path="/private" element={<Private />} />
+
+      </Routes>
+    </>
+
+
   )
 }
 export default App
