@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/HomePage";
+import Header from "./pages/components/Header";
+import Login from "./pages/LoginPage";
+import SignUp from "./pages/SignUpPage";
+import Private from "./pages/PrivatePage";
+import authService from "./services/auth.service";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
-export default App;
+  const [currentUser, setCurrentUser] = useState(undefined)
+  useEffect(() => {
+    const user = authService.getCurrentUser()
+
+    if(user){
+      setCurrentUser(user)
+    }
+  }, [])
+  const logOut =()=>{
+    authService.logout()
+  }
+
+  return (
+    <>
+      <Header logOut= {logOut} currentUser ={currentUser} />
+
+      <Routes>
+        <Route path="/" element={<Home  />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signUp" element={<SignUp />} />
+        <Route path="/private" element={<Private />} />
+
+      </Routes>
+    </>
+
+
+  )
+}
+export default App
