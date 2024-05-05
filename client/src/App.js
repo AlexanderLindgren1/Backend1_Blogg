@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/HomePage";
-import Header from "./pages/components/Header";
+import Header from "./components/Header";
 import Login from "./pages/LoginPage";
 import SignUp from "./pages/SignUpPage";
 import Private from "./pages/PrivatePage";

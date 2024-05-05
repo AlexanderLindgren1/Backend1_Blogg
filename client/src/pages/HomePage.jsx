@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PostService from "../services/post.service";
+import AddPost from "../components/Addposter";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -19,6 +20,7 @@ const Home = () => {
   return (
     <div>
       <h3>
+        <AddPost/>
         {posts.map((post, index) => (
           <div key={index}>{post.content}</div>
         ))}

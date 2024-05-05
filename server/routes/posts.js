@@ -27,8 +27,22 @@ router.post("/public", async (req, res) => {
   }
 })
 
+
+// //Update Post
+// skippar med update fixa det senast onsdag (den 8)
+
+
+
+// //DELETE post
+
+
 router.get("/private", authToken, (req, res) => {
   res.json(privatePosts);
 });
 
+// router.post('test/:tt', function (req, res) {
+//   console.log(1);
+//   console.log(req.params['tt']);
+//   res.send();
+// });
 module.exports = router
