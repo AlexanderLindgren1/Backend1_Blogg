@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt")
 
 const JWT = require("jsonwebtoken")
 const User = require("../modules/Users.Module")
-User
+
 require("dotenv").config()
 
 router.post(
@@ -17,6 +17,7 @@ router.post(
         check("password", "password must be at least 6 chars long").isLength({ min: 6 })
     ],
     async (req, res) => {
+        console.log(1);
         const { email, password } = req.body
 
         const errors = validationResult(req)
@@ -25,7 +26,7 @@ router.post(
                 errors: errors.array()
             })
 
-        let user = users.find((user) => {
+        let user = User.find((user) => {
             return user.email === email
         })
 
