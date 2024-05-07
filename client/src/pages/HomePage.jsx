@@ -22,7 +22,7 @@ const Home = () => {
       <h3>
         <AddPost/>
         {posts.map((post, index) => (
-          <div key={index}>{post.content}</div>
+          <div key={index}>{post.title} <button>delete</button><button>change</button></div>
         ))}
       </h3>
     </div>

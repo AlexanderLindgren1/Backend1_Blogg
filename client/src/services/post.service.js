@@ -6,9 +6,14 @@ const API_URL = "/posts";
 const getAllPublicPosts = () => {
   return axios.get("http://localhost:5000/posts/public");
 };
-const addNewPosterPublic = () => {
-  return axios.post("http://localhost:5000/posts/public");
+const addNewPosterPublic = (title, description) => {
+  return axios.post("http://localhost:5000/posts/public",
+   { title, description })
+   .then(response => {
+     console.log(response.data);
+   });
 };
+
 
 const getAllPrivatePosts = () => {
   return axios.get("http://localhost:5000/posts/private", { headers: authHeader() });

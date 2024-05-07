@@ -26,9 +26,7 @@ router.post(
                 errors: errors.array()
             })
 
-        let user = User.find((user) => {
-            return user.email === email
-        })
+        let user = await User.findOne({ email: email }) // Use findOne instead of find
 
         if (user) {
             return res.status(200).json({
@@ -45,7 +43,7 @@ router.post(
         const hashedPassword = await bcrypt.hash(password, salt)
 
         console.log("hashed password:", hashedPassword);
-        users.push({
+        await User.create({
             email,
             password: hashedPassword
         })
@@ -62,18 +60,17 @@ router.post(
 )
 
 
+
 //get all users
 router.get("/users", (req, res) => {
-    res.json(users)
+    res.json(User)
 })
 
 router.post("/login", async (req, res) => {
     const { email, password } = req.body
     console.log(email);
 
-    let user = users.find((user) => {
-        return user.email === email
-    })
+    let user = await User.findOne({ email: email }) // Use findOne instead of find
     if (!user) {
         return res.status(400).json({
             errors: [
@@ -89,7 +86,6 @@ router.post("/login", async (req, res) => {
             errors:[ 
                 {
                 msg:"Email or password is invalid"
-
                 }
             ]
         })
@@ -104,5 +100,6 @@ router.post("/login", async (req, res) => {
         accessToken,
     })
 })
+
 
 module.exports = router
