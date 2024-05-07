@@ -8,9 +8,10 @@ const getAllPublicPosts = () => {
 };
 const addNewPosterPublic = (title, description) => {
   return axios.post("http://localhost:5000/posts/public",
-   { title, description })
+   { title, description }, )
    .then(response => {
      console.log(response.data);
+     
    });
 };
 
