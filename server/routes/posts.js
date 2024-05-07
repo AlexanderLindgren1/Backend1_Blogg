@@ -18,6 +18,7 @@ router.get("/public", async (req, res) => {
 router.post("/public", async (req, res) => {
   try {
     const newPost = req.body
+    console.log("YOu are in post backend");
     console.log(newPost);
     const post = await Post.create(newPost)
     res.status(201).json(post)
