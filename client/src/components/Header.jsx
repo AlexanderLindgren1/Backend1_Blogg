@@ -18,7 +18,7 @@ function Header(props) {
         {props.currentUser ? (
           <li>
 
-            <Link to="/home" onClick={(props.logOut, console.log(1) )}>
+            <Link to="/" onClick={(props.logOut, console.log(1) )}>
               
               Logout
             </Link>

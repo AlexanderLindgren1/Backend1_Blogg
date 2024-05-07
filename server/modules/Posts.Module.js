@@ -6,7 +6,10 @@ const postSchema = mongoose.Schema({
 
     title: { type: String, maxLength: 30, minLength: 5, required: true },
     description: { type: String, maxLength: 500, required: true },
-    comments: [{ String }]
+    user:{type: mongoose.Schema.Types.ObjectId, ref: "User", required:true} ,
+
+    comments: [{ String }],
+
     // Image
 })
 
