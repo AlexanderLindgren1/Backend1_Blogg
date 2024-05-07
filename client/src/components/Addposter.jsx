@@ -5,7 +5,6 @@ function AddPost() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const Navigate = useNavigate();
-console.log("Working");
   const handleAddingPost = async (e) => {
     e.preventDefault();
     try {
@@ -13,6 +12,7 @@ console.log("Working");
         (response) => {
           Navigate("/");
           window.location.reload();
+
         },
         (error) => {
           console.log(error);
@@ -29,6 +29,7 @@ console.log("Working");
         <label htmlFor="title">title</label>
         <input
           type="text"
+          
           name="title"
           id="title"
           placeholder="title"
