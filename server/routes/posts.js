@@ -14,15 +14,28 @@ router.get("/public", async (req, res) => {
   res.json(posts)
 })
 
-//create Post
-router.post("/public", async (req, res) => {
+// //create Post
+
+
+router.post("/public", authToken, async (req, res) => {
+
   try {
-    const newPost = req.body
-    console.log("YOu are in post backend");
+    const getTheUser = await User.findOne({email:req.user})
+
+    const {title, description} = req.body
+    const newPost = {
+      title,
+      description,
+      user:getTheUser
+    }
     console.log(newPost);
     const post = await Post.create(newPost)
     res.status(201).json(post)
-    // res.status(500).send("Uninplimented")
+
+    console.log(getTheUser);
+    console.log("fanally you doing it but you use chat gpt -_-",req.user);
+    
+  res.send()
   }
   catch (err) {
     console.log(err);
@@ -30,16 +43,16 @@ router.post("/public", async (req, res) => {
       msg: err.message
     })
   }
-})
+  
 
-
+});
 
 
 // //Update Post
-// skippar med update fixa det senast onsdag (den 8)
 
 router.put("/public/:id", async (req, res) => {
   const id = req.params.id
+  console.log(id);
   const updatePost = req.body
   const post = await Post.findOne({ _id: id })
   if (post == null) {
@@ -75,37 +88,7 @@ router.get("/private", authToken, async (req, res) => {
   res.json(posts)
 });
 
-router.get("/xx", authToken, async (req, res) => {
-  //There are much better way to get the ID and I can do it but it probely take longer time after fixing styling then you can fix it.
 
-  try {
-    const getTheUser = await User.findOne({email:req.user})
-
-    const {title, description} = req.body
-    const newPost = {
-      title,
-      description,
-      user:getTheUser
-    }
-    console.log(newPost);
-    const post = await Post.create(newPost)
-    res.status(201).json(post)
-
-    console.log(getTheUser);
-    console.log("fanally you doing it but you use chat gpt -_-",req.user);
-    
-  res.send()
-    // res.status(500).send("Uninplimented")
-  }
-  catch (err) {
-    console.log(err);
-    res.status(400).json({
-      msg: err.message
-    })
-  }
-  
-
-});
 
 //Hello there this is from yesterday (2024-05-06)look at chatgpt okay? so you can fix you inlognning and post and get the user with you post :)
 

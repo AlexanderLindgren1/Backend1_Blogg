@@ -1,52 +1,46 @@
 import React, { useState, useEffect } from "react";
 import PostService from "../services/post.service";
 import AddPost from "../components/Addposter";
-import { useParams } from "react-router-dom";
-const Home = () => {
-
-  const [posts, setPosts] = useState([]);
-  const { _id } = useParams()
-  console.log(_id);
-
-  useEffect(() => {
-    PostService.getAllPublicPosts().then(
-      (response) => {
-        setPosts(response.data);
-
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }, []);
+import { Link, Navigate } from "react-router-dom";
+import UpdatePost from "../components/Update.post";
+import image from "../image/Plague-doctor-girl-with-violin.jpg";
+import Posts from "../components/Post";
+import '../'
+const Home = (props) => {
+  const { posts, setPosts } = props.postUse;
+  const [pageReloaded, setPageReloaded] = useState(false);
+  console.log(posts);
   const delPost = async (post) => {
-    console.log(post._id);
-    const res = await fetch(`http://localhost:5000/posts/public/${post._id}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" }
+    try {
+      const res = await fetch(
+        `http://localhost:5000/posts/public/${post._id}`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      if (res.ok) {
+        console.log("Post deleted");
+        // Update the state to remove the deleted post
+        setPosts(posts.filter((p) => p._id !== post._id));
+        // Reload the page only once
+        // if (!pageReloaded) {
+        //   setPageReloaded(true);
+        // }
+      } else {
+        throw new Error("Post not deleted");
+      }
+    } catch (error) {
+      console.error("Error deleting post:", error);
+      // Handle the error (e.g., display an error message)
     }
-    )
-    if (res.ok) {
-      console.log("Post deleted");
-    }
-    else {
-      throw new Error("post not deleted")
-    }
-  }
-
-  const updatePost = async (post) => {
-    <Update post={post}/>
-  }
+  };
 
   return (
     <div>
       <h3>
         <AddPost />
-        {posts.map((post, index) => (
-          <div key={index}>{post.title}
-            <button onClick={() => (delPost(post), window.location.reload())}>delete</button>
-            <button onClick={()=>updatePost(post)}>Update</button></div>
-        ))}
+        <Posts posts={posts} delPost={delPost} />
       </h3>
     </div>
   );

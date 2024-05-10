@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../services/auth.service";
 function SignUp() {
+
   const [email, setMail] = useState("");
   const [password, setPassword] = useState("");
   const Navigate = useNavigate();

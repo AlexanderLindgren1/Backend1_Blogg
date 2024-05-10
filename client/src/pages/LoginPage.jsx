@@ -14,7 +14,7 @@ function Login() {
 
       await authService.login(email,password).then(
         ()=>{
-          Navigate("/homePage")
+          Navigate("/")
           window.location.reload()
         },
         (error)=>{

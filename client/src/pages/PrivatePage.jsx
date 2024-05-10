@@ -7,7 +7,6 @@ const Private = () => {
   const [privatePosts, setPrivatePosts] = useState([]);
 console.log("In privatepage");
   const navigate = useNavigate();
-
   useEffect(() => {
     PostService.getAllPrivatePosts().then(
       (response) => {

@@ -51,7 +51,7 @@ router.post(
         const accessToken = await JWT.sign(
             { email },
             process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: "5m" }
+            { expiresIn: "5s" }
         )
         res.json({
             accessToken
@@ -94,7 +94,7 @@ router.post("/login", async (req, res) => {
     const accessToken = await JWT.sign(
         { email },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "30s" }
+        { expiresIn: "1h" }
     )
     res.json({
         accessToken,

@@ -1,38 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-function Header(props) {
+import React from "react";
 
-  console.log("currentUser", props.currentUser);
+function Header(props) {
+  function handleReload() {
+    window.location.reload();
+  }
+
   return (
     <div>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <a href="/" onClick={handleReload}>Home</a>
         </li>
         {props.currentUser && (
           <li>
-            <Link to="/private">private</Link>
+            <a href="/private">Private</a>
           </li>
         )}
 
         {props.currentUser ? (
           <li>
-
-            <Link to="/" onClick={(props.logOut, console.log(1) )}>
-              
-              Logout
-            </Link>
+            <a href="/" onClick={props.logOut}>Logout</a>
           </li>
         ) : (
           <li>
-            <Link to="/login">login </Link>
+            <a href="/login">Login</a>
           </li>
         )}
 
         <li>
-          <Link to="/signUp">signUp</Link>
+          <a href="/signUp">SignUp</a>
         </li>
- 
       </ul>
     </div>
   );
