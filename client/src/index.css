@@ -1,0 +1,63 @@
+
+*{
+    margin: 0px;
+}
+.PostContainer{
+
+    display: grid;
+    width: 100vw;
+    grid-template-columns: auto auto auto ;
+    margin: 0px 0px 0px 50px;
+}
+.PostCard{
+    position: relative;
+border: 1px solid black;
+box-shadow: 5px solid black;
+
+width: 500px;
+height: 400px;
+padding: 20px;
+margin: 50px 0px 0px  0px;
+border-radius: 10px;
+
+
+}
+
+#postImageModal {
+    background-color: red;
+    height: 500px;
+    width: 200px;
+
+}
+
+
+.PostCard .imgPost{
+    background-color: red;
+     width: 500px;
+     height: 200px;
+}
+.PostDescription{
+    width: 500px;
+    background-color: red;
+    height: 100px;
+}
+
+.bottom_Post{
+    position: absolute;
+    display: flex;
+    column-gap: 400px;
+    bottom: 20px;
+
+}
+
+
+
+
+.modalPost{
+    position: fixed;
+    z-index: 1;
+    width: 80%;
+    background-color: wheat;
+    height: 800px;
+    right: 200px
+}

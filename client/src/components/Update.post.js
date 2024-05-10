@@ -1,29 +1,51 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-function Update(props) {
+import PostService from "../services/post.service";
+import { useParams } from "react-router-dom";
 
-    const updatePost = async (post) => {
-        console.log(post._id);
-        const res = await fetch(`http://localhost:5000/posts/public/${post._id}`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" }
-          
-    
-        }
-        )
-        if (res.ok) {
-          console.log("Updated User");
-        }
-        else {
-          throw new Error("post not updated")
-        }
-      }
+const UpdatePost = (props) => {
+  const {posts, setPosts} = props.postUse
+  console.log(posts);
+  let {id} = useParams()
+  console.log("This i",id);
+
+  const [title, setTitle] = useState();
+  const [description, setDescription] = useState();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      
+      const updatedPost = { title, description ,id};
+      await PostService.updatePost(updatedPost);
+      console.log("Post updated");
+    } catch (error) {
+      // console.error("Error updating post:", error);
+      // Handle the error (e.g., display an error message)
+    }
+  };
   return (
-    <>
+    <div>
+      <h3>Update Post</h3>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Title:</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Description:</label>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+        <button type="submit">Update Post</button>
+      </form>
+    </div>
+  );
+};
 
-    </>
-  )
-   
-
-}
-export default Update;
+export default UpdatePost;
