@@ -39,7 +39,7 @@ function SignUp() {
           onChange={(e) => setMail(e.target.value)}
         />
 
-        <label htmlFor="Password">email</label>
+        <label htmlFor="Password">Password</label>
         <input
           type="Password"
           name="Password"
