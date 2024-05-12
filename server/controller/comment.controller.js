@@ -21,35 +21,33 @@ const getPostComments = async (req, res) => {
         res.status(500).send("Server Error");
     }
 }
-
 const addPostComment = async (req, res) => {
     try {
         const postId = req.params.id;
         console.log(postId);
-        
+
         const post = await Post.findById(postId);
         if (!post) {
-           
-
             return res.status(404).json({ msg: "Post not found" });
         }
 
         // Create a new comment
         const newComment = new Comment({
             content: req.body.content,
-            post: postId 
+            post: postId
         });
 
         const savedComment = await newComment.save();
 
+        // Send success response
         res.status(201).json(savedComment);
     } catch (err) {
-
-
+        // Handle errors
         console.error(err.message);
         res.status(500).send("Server Error");
     }
 }
+
 
 
 const commentController = { getPostComments, addPostComment }

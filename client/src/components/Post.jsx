@@ -30,7 +30,7 @@ const Posts = (props) => {
 
   return (
     <div className="PostContainer">
-      {showPostModal && <PostModal post={ModalPost} />}
+      {showPostModal && <PostModal post={ModalPost} setShowPostModal ={setShowPostModal}/>}
 
       {posts &&
         posts.map((post, key) => {

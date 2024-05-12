@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import commentService from '../services/comment.service';
 
 function PostModal(props) {
-    const { post } = props;
+    const { post,setShowPostModal } = props;
     const [comments, setComments] = useState([]);
     const [newCommentContent, setNewCommentContent] = useState('');
 
@@ -46,6 +46,7 @@ function PostModal(props) {
                     </div>
                 ))}
             </div>
+            <button onClick={()=>{setShowPostModal(false)}}>close</button>
         </div>
     );
 }
