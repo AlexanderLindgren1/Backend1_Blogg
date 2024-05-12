@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import postService from "../services/post.service";
 
 const censorText = (text) => {
-  const sensitiveWords = ["sensitive", "badword", "inappropriate"];
+  const sensitiveWords = ["Godis", "läsk", "chips",];
 
   sensitiveWords.forEach((word) => {
     const regex = new RegExp(`${word}`, "gi");

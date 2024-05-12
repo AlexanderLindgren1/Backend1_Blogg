@@ -68,10 +68,8 @@ const updatePost = async(req,res)=>{
     }
     console.log("Updated version", updatePost);
     console.log("get One post", post);
-    //Change the post
     post.title = updatePost.title
     post.description = updatePost.description
-    //save in the database
     await post.save()
     console.log("This is the updated post", post);
 }

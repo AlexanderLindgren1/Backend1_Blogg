@@ -18,13 +18,10 @@ function PostModal(props) {
     const handleAddComment = async () => {
         
         if (newCommentContent.trim() !== '') {
-            // Call your service to add the new comment
             await commentService.addComment(post._id, newCommentContent);
 
-            // Refetch comments
             const updatedComments = await commentService.getAllComments(post._id);
             setComments(updatedComments);
-            // Clear input field
             setNewCommentContent('');
         }
     };

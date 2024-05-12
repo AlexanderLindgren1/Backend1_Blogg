@@ -18,8 +18,7 @@ const UpdatePost = () => {
       await PostService.updatePost(updatedPost);
       console.log("Post updated");
     } catch (error) {
-      // console.error("Error updating post:", error);
-      // Handle the error (e.g., display an error message)
+
     }
   };
   return (
