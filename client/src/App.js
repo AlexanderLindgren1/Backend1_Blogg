@@ -4,25 +4,17 @@ import Home from "./pages/HomePage";
 import Header from "./components/Header";
 import Login from "./pages/LoginPage";
 import SignUp from "./pages/SignUpPage";
-import Private from "./pages/PrivatePage";
+import Profile from "./pages/ProfilePage";
 import authService from "./services/auth.service";
 import UpdatePost from "./components/Update.post";
 import postService from "./services/post.service";
 function App() {
-  const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    postService.getAllPublicPosts().then(
-      (response) => {
-        setPosts(response.data);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }, []);
+ 
+
 
   const [currentUser, setCurrentUser] = useState(undefined)
+  const [HidePostChanger, setHidePostChanger] = useState(false)
 
   useEffect(() => {
     const user = authService.getCurrentUser()
@@ -34,17 +26,16 @@ function App() {
   const logOut = () => {
     authService.logout()
   }
-  const postUse = { posts, setPosts }
   return (
     <>
       <Header logOut={logOut} currentUser={currentUser} />
 
       <Routes>
-        <Route path="/" element={<Home postUse={postUse} />} />
+        <Route path="/" element={<Home setHidePostChanger={setHidePostChanger } HidePostChanger={HidePostChanger} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
-        <Route path="/private" element={<Private />} />
-        <Route path="/public/:id" element={<UpdatePost postUse={postUse} />} />
+        <Route path="/Profile" element={<Profile  setHidePostChanger={setHidePostChanger} HidePostChanger={HidePostChanger}/>} />
+        <Route path="/profile/:id" element={<UpdatePost />} />
       </Routes>
     </>
 

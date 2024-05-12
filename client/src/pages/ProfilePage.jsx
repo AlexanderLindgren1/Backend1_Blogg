@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import PostService from "../services/post.service";
-
+import AuthService from "../services/auth.service";
+import { useNavigate } from "react-router-dom";
+import AddPost from "../components/Addposter";
 import Posts from "../components/Post";
-import "../";
-const Home = (props) => {
+
+
+const Profile = (props) => {
   const  {HidePostChanger, setHidePostChanger}= props
+
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    setHidePostChanger(false)
-    PostService.getAllPublicPosts().then(
+    setHidePostChanger(true)
+    PostService.getAllProfilePosts().then(
       (response) => {
         setPosts(response.data);
       },
@@ -18,12 +22,12 @@ const Home = (props) => {
       }
     );
   }, []);
-console.log(posts);
   return (
     <div>
-      <Posts posts ={posts} HidePostChanger={HidePostChanger}/>
+      <AddPost posts ={posts}/>
+      <Posts posts ={posts} setPosts={setPosts}  HidePostChanger={HidePostChanger} />
     </div>
   );
 };
 
-export default Home;
+export default Profile;

@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import PostService from "../services/post.service";
 import { useParams } from "react-router-dom";
 
-const UpdatePost = (props) => {
-  const {posts, setPosts} = props.postUse
-  console.log(posts);
+const UpdatePost = () => {
+ 
   let {id} = useParams()
   console.log("This i",id);
 
@@ -19,8 +18,7 @@ const UpdatePost = (props) => {
       await PostService.updatePost(updatedPost);
       console.log("Post updated");
     } catch (error) {
-      // console.error("Error updating post:", error);
-      // Handle the error (e.g., display an error message)
+
     }
   };
   return (

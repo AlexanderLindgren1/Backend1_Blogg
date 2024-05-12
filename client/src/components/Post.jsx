@@ -1,35 +1,56 @@
 import React, { useState, useEffect } from "react";
-import PostService from "../services/post.service";
-import AddPost from "./Addposter";
 import { Link, Navigate } from "react-router-dom";
-import UpdatePost from "./Update.post";
-import image from "../image/Plague-doctor-girl-with-violin.jpg";
 import PostModal from "./PostModal";
 
 const Posts = (props) => {
-  const { posts, delPost } = props;
+  const { posts, setPosts } = props;
+
   const [showPostModal, setShowPostModal] = useState(false);
   const [ModalPost, setModalPost] = useState({});
 
+  const delPost = async (post) => {
+    try {
+      const res = await fetch(
+        `http://localhost:5000/posts/public/${post._id}`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      if (res.ok) {
+        console.log("Post deleted");
+        setPosts(posts.filter((p) => p._id !== post._id));
+      } else {
+        throw new Error("Post not deleted");
+      }
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
+  };
 
   return (
     <div className="PostContainer">
-      {showPostModal && <PostModal post ={ModalPost}/>}
+      {showPostModal && <PostModal post={ModalPost} />}
+
       {posts &&
         posts.map((post, key) => {
-          const { title, description, img } = post;
+          console.log(post);
+          const { title, description } = post;
 
           return (
             <div className="PostCard" key={key}>
-                <div className="imgPost"><img src={img} alt="Post Image" id="postImageModal" /></div>
-
-              <h1 onClick={() => (setShowPostModal(true), setModalPost(post))}>{title}</h1>
-              <h4 className="PostDescription">{description }</h4>
-              <div className="bottom_Post">
-              <button onClick={() => delPost(post)} className="deletePost">Delete</button>
-              <Link to={`/public/${post._id}`}>Update</Link>
-              </div>
-       
+              <h1 onClick={() => (setShowPostModal(true), setModalPost(post))}>
+                {title}
+              </h1>
+              <p id="PostDescription">{description}</p>
+              {props.HidePostChanger && (
+                <div className="bottom_Post">
+                  <button onClick={() => delPost(post)} className="deletePost">
+                    Delete
+                  </button>
+                  <Link to={`/profile/${post._id}`}>Update</Link>
+                </div>
+              )}
             </div>
           );
         })}

@@ -1,14 +1,13 @@
 import axios from "axios"
 
-const signup = (email, password) => {
-    return axios.post("http://localhost:5000/auth/signup", { email, password }).then((response) => {
+const signup = (email, password, adminStatus) => {
+    return axios.post("http://localhost:5000/auth/signup", { email, password, adminStatus }).then((response) => {
         if (response.data.accessToken) {
-
+            
             localStorage.setItem("user", JSON.stringify(response.data))
         }
         try {
             if (response.data.errors) {
-                // console.log("You typed something wrong in here please see for misspells");
                 return console.log("There are already a user that has the email.");
             }
 

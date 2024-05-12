@@ -9,7 +9,9 @@ const userSchema = mongoose.Schema({
     firstName: {type: String, min:2, max: 20},
     lastName: {type: String, minLength:2, maxLength: 20},
     Age: {type: Number, min:2, max: 100},
-    // profileImage
+    adminStatus: {
+type:Boolean
+    }
 })
 const User =mongoose.model("User",userSchema)
 module.exports = User
