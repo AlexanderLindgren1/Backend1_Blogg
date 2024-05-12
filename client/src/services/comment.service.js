@@ -1,6 +1,6 @@
 import axios from 'axios';
+import authHeader from './auth-header';
 
-// Function to fetch all comments using Axios
 export async function getAllComments(postId) {
   try {
     const response = await axios.get(`http://localhost:5000/comments/${postId}/comments`);
@@ -11,11 +11,10 @@ export async function getAllComments(postId) {
   }
 }
 
-// Function to add a new comment using Axios
 export async function addComment(postId, content) {
   try {
-console.log(postId, content);
-    const response = await axios.post(`http://localhost:5000/comments/${postId}/add`, { content });
+    console.log(postId, content);
+    const response = await axios.post(`http://localhost:5000/comments/${postId}/add`, { content }, { headers: authHeader() });
     console.log(response);
     console.log(response.data);
     return response.data;
@@ -25,7 +24,6 @@ console.log(postId, content);
   }
 }
 
-// Object containing all service functions
 const commentService = {
   getAllComments,
   addComment
