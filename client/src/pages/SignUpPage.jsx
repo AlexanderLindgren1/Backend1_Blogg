@@ -27,8 +27,8 @@ function SignUp() {
     }
   };
   return (
-    <div>
-      <p>signUp</p>
+    <div className="signupAndLogin">
+      <p className="signupAndLoginText">signUp</p>
       <form onSubmit={handleLogin}>
         <label htmlFor="email">email</label>
         <input

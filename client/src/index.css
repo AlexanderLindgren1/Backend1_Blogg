@@ -1,63 +1,96 @@
-
-*{
-    margin: 0px;
+* {
+  margin: 5px;
 }
-.PostContainer{
 
-    display: grid;
-    width: 100vw;
-    grid-template-columns: auto auto auto ;
-    margin: 0px 0px 0px 50px;
+.PostContainer {
+  display: grid;
+  width: 100vw;
+  grid-template-columns: auto auto auto;
+  margin: 0px 0px 0px 50px;
 }
-.PostCard{
-    position: relative;
+.PostCard {
+  position: relative;
+  border: 1px solid black;
+  box-shadow: 5px solid black;
+
+  width: 500px;
+  height: 300px;
+  padding: 20px;
+  margin: 50px 0px 0px 0px;
+  border-radius: 10px;
+  word-wrap: break-word;
+}
+
+#PostDescription {
+  width: 500px;
+  height: 150px;
+  overflow-y: scroll;
+  background-color: rgb(236, 236, 236);
+  border-radius: 2%;
+  box-shadow: 5px 5px 15px rgb(73, 73, 73);
+}
+
+.bottom_Post {
+  position: absolute;
+  display: flex;
+  column-gap: 400px;
+  bottom: 20px;
+}
+
+.modalPost {
+  display: grid;
+  position: fixed;
+  z-index: 1;
+  width: 80%;
+  background-color: wheat;
+  height: 800px;
+  right: 200px;
+  justify-content: center;
+}
+
+.commentContainer {
+  display: grid;
+  position: relative;
+  justify-content: center;
+  width: 75vw;
+  height: 65vh;
+  background-color: red;
+  overflow-y: scroll;
+}
+.comment {
+  background-color: rgb(164, 166, 196);
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  margin-bottom: 50px;
+  height: 140px;
+
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  column-gap: 25%;
+}
+li a{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 10px;
+  margin: auto;
+  width: 100px;
+  height: 50px;
+  background-color: rgb(243, 243, 243);
+  border-radius: 20%;
+  font-size: 30px;
+
+}
+
+li a :hover {
 border: 1px solid black;
-box-shadow: 5px solid black;
-
-width: 500px;
-height: 400px;
-padding: 20px;
-margin: 50px 0px 0px  0px;
-border-radius: 10px;
-
-
 }
-
-#postImageModal {
-    background-color: red;
-    height: 500px;
-    width: 200px;
-
-}
-
-
-.PostCard .imgPost{
-    background-color: red;
-     width: 500px;
-     height: 200px;
-}
-.PostDescription{
-    width: 500px;
-    background-color: red;
-    height: 100px;
-}
-
-.bottom_Post{
-    position: absolute;
-    display: flex;
-    column-gap: 400px;
-    bottom: 20px;
-
-}
-
-
-
-
-.modalPost{
-    position: fixed;
-    z-index: 1;
-    width: 80%;
-    background-color: wheat;
-    height: 800px;
-    right: 200px
+.email{
+  background-color: red;
 }

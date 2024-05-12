@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../services/auth.service";
+import "./register_and_Login.css"
 
 function Login() {
   const [email, setemail] = useState("");
@@ -26,21 +27,25 @@ function Login() {
     }
   };
   return (
-    <div>
-      <p>Login</p>
+  
+      <div className="signupAndLogin">
+      <p className="signupAndLoginText">Login</p>
       <form onSubmit={handleLogin} >
-          <label htmlFor="email">email</label>
+
+          <label htmlFor="email">email</label  >
           <input type="text" name="email" id="email" placeholder="email"
           onChange={(e)=> setemail(e.target.value)}
           />
 
-          <label htmlFor="Password">email</label>
+          <label htmlFor="Password">Password</label>
           <input type="Password" name="Password" id="Password" 
           onChange={(e)=> setPassword(e.target.value)}
           />
           <button type="submit">Log in</button>
         </form>
-    </div>
+
+      </div>
+
   );
 }
 export default Login;

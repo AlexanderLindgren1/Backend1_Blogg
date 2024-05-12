@@ -1,0 +1,12 @@
+.signupAndLogin{
+
+    margin: auto;
+    display: grid;
+    font-size: large;
+    justify-content: center;
+}
+.Toadd{
+    position: relative;
+    right: -46%;
+}
+

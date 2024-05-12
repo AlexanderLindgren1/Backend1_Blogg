@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import PostService from "../services/post.service";
 import { useParams } from "react-router-dom";
 
-const UpdatePost = (props) => {
-  const {posts, setPosts} = props.postUse
-  console.log(posts);
+const UpdatePost = () => {
+ 
   let {id} = useParams()
   console.log("This i",id);
 

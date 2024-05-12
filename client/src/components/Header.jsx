@@ -13,7 +13,7 @@ function Header(props) {
         </li>
         {props.currentUser && (
           <li>
-            <a href="/private">Private</a>
+            <a href="/Profile">Profile</a>
           </li>
         )}
 
